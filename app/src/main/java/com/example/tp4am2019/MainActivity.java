@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
      List<String> listarta;
 
+    public void setAdminFragments(FragmentManager adminFragments) {
+        this.adminFragments = adminFragments;
+    }
+
     String NombreProcesar;
 
 
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ArrayList<String> listarta = new ArrayList();
+        listarta = new ArrayList();
         ListView miListadeResultados;
         ArrayAdapter miAdaptador;
         String nombre;
@@ -40,16 +44,11 @@ public class MainActivity extends AppCompatActivity {
         Button boton;
         adminFragments=getFragmentManager();
 
-        Fragment frgIngreso;
-        frgIngreso=new FragmentsResultadoNombre();
-
-        transacFragments=adminFragments.beginTransaction();
-        transacFragments.replace(R.id.AlojadorDeFragments, frgIngreso);
-        transacFragments.commit();
     }
 
-        public void  onClick(View VistaRecibida) {
-
-
-        }
+    public void cambiarFragment(Fragment f){
+        transacFragments=adminFragments.beginTransaction();
+        transacFragments.replace(R.id.AlojadorDeFragments, f);
+        transacFragments.commit();
+    }
 }

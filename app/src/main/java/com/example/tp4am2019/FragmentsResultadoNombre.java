@@ -25,22 +25,19 @@ public class FragmentsResultadoNombre extends Fragment {
 
     ArrayList<String> listarta = new ArrayList();
     ListView miListadeResultados;
+
     ArrayAdapter miAdaptador;
 
     public View onCreateView(LayoutInflater inflador, ViewGroup GrupodeVista, Bundle datos){
         View VistaDevolver;
-        VistaDevolver=inflador.inflate(R.layout.activity_nombre,GrupodeVista,false);
+        VistaDevolver=inflador.inflate(R.layout.layout_resultados_nombre,GrupodeVista,false);
 
+        miListadeResultados=(ListView) VistaDevolver.findViewById(R.id.listarta);
 
-        MainActivity actPrincipal;
-        actPrincipal=(MainActivity) getActivity();
-        miAdaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, actPrincipal.listarta);
+        miAdaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ((MainActivity)getActivity()).GetList());
+
         miListadeResultados.setAdapter(miAdaptador);
         String NombreAPocesar;
-
-
-
-
 
         return VistaDevolver;
     }

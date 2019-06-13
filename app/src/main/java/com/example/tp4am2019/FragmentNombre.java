@@ -23,8 +23,6 @@ public class FragmentNombre  extends Fragment implements View.OnClickListener {
 
     EditText Nombre;
     Button Boton;
-    ArrayList<String> listarta = new ArrayList();
-    ListView miListadeResultados;
     ArrayAdapter miAdaptador;
     String nombre;
 
@@ -40,6 +38,7 @@ public class FragmentNombre  extends Fragment implements View.OnClickListener {
     public void onClick(View Vista) {
         tareaAsincronica tarea = new tareaAsincronica();
         tarea.execute();
+        nombre = Nombre.getText().toString();
     }
 
     public void procesarJSONleido(InputStreamReader streamLeido) {
@@ -53,18 +52,14 @@ public class FragmentNombre  extends Fragment implements View.OnClickListener {
                     JSONleido.beginArray();
                     while (JSONleido.hasNext()) {
                         JSONleido.beginObject();
-                        while (JSONleido.hasNext()) {
+                        while(JSONleido.hasNext()) {
                             nombreElementoActual = JSONleido.nextName();
                             Log.d("LecturaJSON", nombreElementoActual);
                             if (nombreElementoActual.equals("nombre")) {
                                 String valorElementoActual = JSONleido.nextString();
                                 Log.d("LecturaJson", "valor " + valorElementoActual);
                                 Log.d("LecturaJSON", "SE ACERCA AL IF");
-                                if (valorElementoActual.contains(nombre)) {
-                                    Log.d("LecturaJSON", "ENTRO AL IF");
-                                    listarta.add(valorElementoActual);
-                                    Log.d("LecturaJSON", "Se agrego a la lista");
-                                }
+                                ((MainActivity)getActivity()).GetList().add(valorElementoActual);
                             } else {
                                 JSONleido.skipValue();
                             }
@@ -114,8 +109,7 @@ public class FragmentNombre  extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            miListadeResultados.setAdapter(miAdaptador);
-            ((MainActivity) getActivity()).listarta = listarta;
+            ((MainActivity)getActivity()).cambiarFragment(new FragmentsResultadoNombre());
         }
     }
 }
