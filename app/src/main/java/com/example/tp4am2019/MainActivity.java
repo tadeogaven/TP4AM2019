@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager adminFragments;
     FragmentTransaction transacFragments;
 
+
      List<String> listarta;
+    List<String> listaCat;
 
     public void setAdminFragments(FragmentManager adminFragments) {
         this.adminFragments = adminFragments;
@@ -31,24 +33,49 @@ public class MainActivity extends AppCompatActivity {
     public List<String> GetList(){
         return  listarta;
     }
+    public List<String> GetListCAT(){
+        return  listaCat;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listarta = new ArrayList();
+        listaCat = new ArrayList();
         ListView miListadeResultados;
+        ListView miListadeCategorias;
         ArrayAdapter miAdaptador;
         String nombre;
         EditText Nombre;
         Button boton;
         adminFragments=getFragmentManager();
+        Fragment NombreCat;
+        NombreCat= new FragmentNombre();
+
+        transacFragments=adminFragments.beginTransaction();
+        transacFragments.replace(R.id.AlojadorDeFragmentsNOMBRE, NombreCat );
+        transacFragments.commit();
+
+        Fragment Cat;
+        Cat= new FragmentCategoria();
+        transacFragments=adminFragments.beginTransaction();
+        transacFragments.replace(R.id.AlojadorDeFragmentsCATEGORIA, Cat );
+        transacFragments.commit();
+
 
     }
 
-    public void cambiarFragment(Fragment f){
+
+
+    public void cambiarFragmentNombre(Fragment f){
         transacFragments=adminFragments.beginTransaction();
-        transacFragments.replace(R.id.AlojadorDeFragments, f);
+        transacFragments.replace(R.id.AlojadorDeFragmentsNOMBRE, f);
+        transacFragments.commit();
+    }
+    public void cambiarFragmentCategoria(Fragment f){
+        transacFragments=adminFragments.beginTransaction();
+        transacFragments.replace(R.id.AlojadorDeFragmentsCATEGORIA, f);
         transacFragments.commit();
     }
 }

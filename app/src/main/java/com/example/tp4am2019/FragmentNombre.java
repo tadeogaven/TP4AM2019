@@ -39,6 +39,7 @@ public class FragmentNombre  extends Fragment implements View.OnClickListener {
         tareaAsincronica tarea = new tareaAsincronica();
         tarea.execute();
         nombre = Nombre.getText().toString();
+        Log.d("Fragments","Entra al fragment");
     }
 
     public void procesarJSONleido(InputStreamReader streamLeido) {
@@ -109,7 +110,7 @@ public class FragmentNombre  extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            ((MainActivity)getActivity()).cambiarFragment(new FragmentsResultadoNombre());
+            ((MainActivity)getActivity()).cambiarFragmentNombre(new FragmentsResultadoNombre());
         }
     }
 }

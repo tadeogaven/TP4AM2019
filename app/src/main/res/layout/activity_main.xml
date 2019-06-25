@@ -5,12 +5,33 @@
     android:orientation="vertical">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BUSCAR POR NOMBRE"
+        android:textSize="20dp"
+        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:id="@+id/AlojadorDeFragmentsNOMBRE">
+    </FrameLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BUSCAR POR CATEGORÍA"
+        android:textSize="20dp"
+        />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/AlojadorDeFragments">
-
+        android:id="@+id/AlojadorDeFragmentsCATEGORIA">
     </FrameLayout>
 
 
